@@ -1,4 +1,8 @@
 import static org.junit.Assert.*;
+
+import java.util.Arrays;
+import java.util.List;
+
 import org.junit.Test;
 
 public class ExplorerSearchTest {
@@ -58,5 +62,45 @@ public class ExplorerSearchTest {
 
         int[] actual = ExplorerSearch.startingLocation(island);
         assertArrayEquals(new int[]{4, 5}, actual);
+    }
+
+    @Test
+    public void testPossibleMoves_Center_MediumIsland() {
+        int[][] island = {
+            {1,1,1,3,1,1},
+            {3,2,3,1,3,1},
+            {1,1,0,1,3,3},
+            {3,1,2,1,1,1},
+            {1,1,1,2,1,1},
+        };
+
+        int[] location = {2, 2};
+        List<int[]> actual = ExplorerSearch.traveling(island, location);
+        List<int[]> expected = Arrays.asList(
+            new int[]{2, 3}, // right
+            new int[]{2, 1}  // left
+        );
+
+        assertEquals(expected.size(), actual.size());
+        for (int i = 0; i < expected.size(); i++) {
+            assertArrayEquals(expected.get(i), actual.get(i));
+        }
+    }
+
+    @Test
+    public void testPossibleMove_SmallIsland() {
+        int[][] island = {
+            {0, 2},
+            {3, 1}
+        };
+
+        int[] location = {0, 0};
+        List<int[]> actual = ExplorerSearch.traveling(island, location);
+        List<int[]> expected = Arrays.asList();
+
+        assertEquals(expected.size(), actual.size());
+        for (int i = 0; i < expected.size(); i++) {
+            assertArrayEquals(expected.get(i), actual.get(i));
+        }
     }
 }
