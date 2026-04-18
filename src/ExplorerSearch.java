@@ -32,7 +32,25 @@ public class ExplorerSearch {
         // Implement your method here!
         // Please also make more test cases
         // I STRONGLY RECOMMEND testing some helpers you might make too
-        return -1;
+        int[] start = startingLocation(island);
+        boolean[][] visited = new boolean[island.length][island[0].length];
+        return travelTiles(start, island, visited, 0);
+    }
+
+    static int travelTiles(int[] location, int[][] island, boolean[][] visited, int count){
+        int curR = location[0];
+        int curC = location[1];
+
+        if(visited[curR][curC]) return count;
+
+        visited[curR][curC] = true;
+        count++;
+
+        for(int[] travel : traveling(island, location)){
+            count = travelTiles(travel, island, visited, count);
+        }
+
+        return count;
     }
 
     public static List<int[]> traveling(int[][] island, int[] location){
@@ -50,7 +68,6 @@ public class ExplorerSearch {
         }
 
         // down
-
         newR = curR + 1;
         newC = curC;
 
@@ -59,7 +76,6 @@ public class ExplorerSearch {
         }
 
         //right
-
         newR = curR;
         newC = curC + 1;
 
@@ -68,7 +84,6 @@ public class ExplorerSearch {
         }
 
         //left
-
         newR = curR;
         newC = curC - 1;
 

@@ -19,6 +19,32 @@ public class ExplorerSearchTest {
         assertEquals(14, actual);
     }
 
+    @Test
+    public void testReachableArea_Unmovable() {
+        int[][] island = {
+            {1,1,1,3,1,1},
+            {3,2,3,1,3,1},
+            {1,1,1,1,3,3},
+            {3,1,2,2,0,2},
+            {1,1,1,2,2,1},
+        };
+        int actual = ExplorerSearch.reachableArea(island);
+        assertEquals(1, actual);
+    }
+
+    @Test
+    public void testReachableArea_AllReachable() {
+        int[][] island = {
+            {1,1,1,1,1,1},
+            {1,1,1,1,1,1},
+            {1,1,1,1,1,1},
+            {1,1,1,1,0,1},
+            {1,1,1,1,1,1},
+        };
+        int actual = ExplorerSearch.reachableArea(island);
+        assertEquals(30, actual);
+    }
+
     // Add more tests here!
     // Come up with varied cases
 
@@ -102,5 +128,19 @@ public class ExplorerSearchTest {
         for (int i = 0; i < expected.size(); i++) {
             assertArrayEquals(expected.get(i), actual.get(i));
         }
+    }
+
+    @Test
+    public void testTravelTiles_AllDirections() {
+        int[][] island = {
+            {1, 1, 1},
+            {1, 0, 1},
+            {1, 1, 1}
+        };
+
+        int[] location = {1, 1};
+        boolean[][] visited = new boolean[3][3];
+        int actual = ExplorerSearch.travelTiles(location, island, visited, 0);
+        assertEquals(9, actual);
     }
 }
