@@ -90,7 +90,6 @@ public class ExplorerSearch {
         if(newC >= 0 && (island[newR][newC] != 2 && island[newR][newC] != 3)){
             validLocs.add(new int[]{newR, newC});
         }
-
         return validLocs;
     }
 

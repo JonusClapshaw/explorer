@@ -45,6 +45,20 @@ public class ExplorerSearchTest {
         assertEquals(30, actual);
     }
 
+    @Test
+    public void testTravelTiles_AllDirections() {
+        int[][] island = {
+            {1, 1, 1},
+            {1, 0, 1},
+            {1, 1, 1}
+        };
+
+        int[] location = {1, 1};
+        boolean[][] visited = new boolean[3][3];
+        int actual = ExplorerSearch.travelTiles(location, island, visited, 0);
+        assertEquals(9, actual);
+    }
+
     // Add more tests here!
     // Come up with varied cases
 
@@ -128,19 +142,5 @@ public class ExplorerSearchTest {
         for (int i = 0; i < expected.size(); i++) {
             assertArrayEquals(expected.get(i), actual.get(i));
         }
-    }
-
-    @Test
-    public void testTravelTiles_AllDirections() {
-        int[][] island = {
-            {1, 1, 1},
-            {1, 0, 1},
-            {1, 1, 1}
-        };
-
-        int[] location = {1, 1};
-        boolean[][] visited = new boolean[3][3];
-        int actual = ExplorerSearch.travelTiles(location, island, visited, 0);
-        assertEquals(9, actual);
     }
 }
